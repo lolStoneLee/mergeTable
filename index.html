@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table merge</title>
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+    <style>
+        @import url("//unpkg.com/element-plus/dist/index.css");
+    </style>
+</head>
+<body> 
+
+    <div id="app">
+        <div>   
+            <el-table
+            :data="dataList"
+            :span-method="arraySpanMethod"
+            border
+            style="width: 100%">
+                <template v-for="(item, index) in colDataList">
+                    <el-table-column 
+                    :label="item.label"
+                    :prop="item.prop"
+                    ></el-table-column>
+                </template>
+                <!-- 增减项 -->
+                <el-table-column label="操作">
+                    <template v-slot="scope">
+                        <i class="icons el-icon-circle-plus-outline" 
+                        @click="addRow(scope.row, scope.$index)"></i>
+                        <i class="icons el-icon-remove-outline"
+                        @click="delRow(scope.$index)"></i>
+                    </template>
+                </el-table-column>
+            </el-table>
+            
+        </div>
+    </div>
+</body>
+
+<!-- 引入vue -->
+<script src="//unpkg.com/vue@next"></script>
+<script src="//cdn.jsdelivr.net/npm/element-plus"></script>
+<script type='module'>
+    import Counter from './index.js'
+    const app = Vue.createApp(Counter)
+    app.use(ElementPlus)
+    app.mount('#app')
+    // console.log(Counter,`Counter`)
+</script>
+</html>
